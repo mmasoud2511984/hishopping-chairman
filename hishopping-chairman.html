@@ -15,6 +15,7 @@
             --light: #f9f9f9;
             --dark: #333;
             --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --page-margin: min(5vw, 60px); /* هوامش متجاوبة */
         }
         
         body {
@@ -24,12 +25,14 @@
             margin: 0;
             padding: 0;
             background-color: #f5f7fa;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 20px var(--page-margin); /* هوامش جانبية متغيرة */
+            box-sizing: border-box;
         }
         
         .header {
@@ -39,7 +42,7 @@
         
         .header h1 {
             color: var(--primary);
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem); /* حجم خط متجاوب */
             margin-bottom: 15px;
             font-weight: 700;
         }
@@ -65,14 +68,14 @@
         .profile-info h2 {
             color: var(--primary);
             margin: 0 0 5px 0;
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
             font-weight: 700;
         }
         
         .profile-info p.title {
             color: var(--secondary);
             margin: 0 0 15px 0;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             font-weight: 600;
         }
         
@@ -92,25 +95,31 @@
             text-align: justify;
             text-indent: 30px;
             width: 85%;
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .card p {
             margin: 0;
-            font-size: 1.05rem;
+            font-size: clamp(1rem, 1.1vw, 1.05rem);
         }
         
-        /* Alternating border positions - all aligned */
+        /* تناوب الحدود */
         .card:nth-child(odd) {
             border-left: 5px solid var(--secondary);
-            margin-left: auto; /* Align to right */
+            margin-right: 0;
         }
         
         .card:nth-child(even) {
             border-right: 5px solid var(--accent2);
-            margin-right: auto; /* Align to left */
+            margin-left: 0;
         }
         
-       
+        .card:nth-child(3n) {
+            border-left: 5px solid var(--accent3);
+            border-right: none;
+        }
         
         .highlight-card {
             background: white;
@@ -121,12 +130,13 @@
             margin: 40px auto;
             text-align: justify;
             width: 85%;
+            box-sizing: border-box;
         }
         
         .highlight-card h3 {
             color: var(--accent1);
             margin-top: 0;
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
             text-align: left;
             text-indent: 0;
         }
@@ -137,7 +147,7 @@
         
         .highlight-card li {
             margin-bottom: 10px;
-            font-size: 1.05rem;
+            font-size: clamp(1rem, 1.1vw, 1.05rem);
             text-indent: 0;
         }
         
@@ -150,11 +160,12 @@
             margin-left: -1em;
         }
         
-        /* Distinct signature style */
+        /* تنسيق التوقيع المميز */
         .signature {
             text-align: center;
             margin-top: 60px;
             position: relative;
+            padding: 0 var(--page-margin);
         }
         
         .signature-content {
@@ -164,43 +175,42 @@
             background: white;
             border-radius: 8px;
             box-shadow: var(--shadow);
-            border-top: 5px solid var(--accent2);
-            border-bottom: 5px solid var(--accent2);
+            border-top: 3px dashed var(--primary);
+            border-bottom: 3px dashed var(--primary);
             max-width: 500px;
             position: relative;
+            width: 100%;
+            box-sizing: border-box;
         }
         
-        .signature-content:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-        }
-        
+        .signature-content:before,
         .signature-content:after {
             content: '';
             position: absolute;
-            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 80%;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+        
+        .signature-content:before {
+            top: 0;
+        }
+        
+        .signature-content:after {
+            bottom: 0;
         }
         
         .signature p {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
             text-indent: 0;
         }
         
         .signature .name {
             font-weight: 700;
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
             color: var(--primary);
             margin-top: 15px;
             font-family: 'Times New Roman', serif;
@@ -213,34 +223,31 @@
         }
         
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .card, .highlight-card {
+                width: 90%;
+                padding: 25px;
+                text-indent: 20px;
             }
             
-            .card, .highlight-card {
-                padding: 20px;
-                text-indent: 20px;
-                width: 90%;
+            .signature-content {
+                padding: 25px 30px;
             }
         }
         
         @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .header h1 {
-                font-size: 1.8rem;
+            :root {
+                --page-margin: 15px;
             }
             
             .card, .highlight-card {
-                padding: 25px;
-                text-indent: 15px;
                 width: 95%;
+                padding: 20px;
+                text-indent: 15px;
             }
             
-            .signature-content {
-                padding: 20px 30px;
+            .profile-img {
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
