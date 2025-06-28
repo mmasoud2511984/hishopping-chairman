@@ -112,12 +112,9 @@
         
         /* Different colors for variety */
         .card:nth-child(3n+0) {
-    border-right: 5px solid var(--accent3); /* تغيير من left إلى right */
-
-    margin-right: auto; /* تعديل الهوامش */
-
-}
-الكود الكامل المعدل (مع التركيز على التعديل):
+            border-left: 5px solid var(--accent3);
+            margin-left: auto; /* Align to right */
+        }
         
         .highlight-card {
             background: white;
@@ -171,8 +168,8 @@
             background: white;
             border-radius: 8px;
             box-shadow: var(--shadow);
-            border-top: 5px solid var(--secondary);
-            border-bottom: 5px solid var(--secondary);
+            border-top: 3px dashed var(--primary);
+            border-bottom: 3px dashed var(--primary);
             max-width: 500px;
             position: relative;
         }
@@ -259,7 +256,7 @@
         </div>
         
         <div class="profile">
-            <img src="hi.png" alt="Chairman's Photo" class="profile-img">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Chairman's Photo" class="profile-img">
             <div class="profile-info">
                 <h2>Salem Al-Mahrouqi</h2>
                 <p class="title">Chairman of the Board</p>
