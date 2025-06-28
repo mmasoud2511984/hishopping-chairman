@@ -91,7 +91,7 @@
             position: relative;
             text-align: justify;
             text-indent: 30px;
-            width: 85%;
+            width: 100%;
         }
         
         .card p {
@@ -111,10 +111,13 @@
         }
         
         /* Different colors for variety */
-        .card:nth-child(3n+0) {
-            border-left: 5px solid var(--accent3);
-            margin-left: auto; /* Align to right */
-        }
+        card:nth-child(3n+0) {
+    border-right: 5px solid var(--accent3); /* تغيير من left إلى right */
+    border-left: none; /* إضافة هذه الخاصية */
+    margin-left: 15%; /* تعديل الهوامش */
+    margin-right: 0;
+}
+الكود الكامل المعدل (مع التركيز على التعديل):
         
         .highlight-card {
             background: white;
@@ -124,7 +127,7 @@
             border-left: 5px solid var(--accent1);
             margin: 40px auto;
             text-align: justify;
-            width: 85%;
+            width: 100%;
         }
         
         .highlight-card h3 {
