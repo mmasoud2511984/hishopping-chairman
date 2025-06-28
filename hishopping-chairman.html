@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chairman's Address | Hishopping</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent1: #e74c3c;
+            --accent2: #2ecc71;
+            --accent3: #9b59b6;
+            --light: #f9f9f9;
+            --dark: #333;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: var(--shadow);
+        }
+        
+        .profile-info h2 {
+            color: var(--primary);
+            margin: 0 0 5px 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .profile-info p.title {
+            color: var(--secondary);
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            text-align: justify;
+            text-indent: 30px;
+        }
+        
+        .card p {
+            margin: 0;
+            font-size: 1.05rem;
+        }
+        
+        /* Alternating border positions */
+        .card:nth-child(odd) {
+            border-left: 5px solid var(--secondary);
+            margin-right: 15%;
+        }
+        
+        .card:nth-child(even) {
+            border-right: 5px solid var(--accent2);
+            margin-left: 15%;
+        }
+        
+        /* Different colors for variety */
+        .card:nth-child(3n+0) {
+            border-left: 5px solid var(--accent3);
+            border-right: none;
+            margin-right: 15%;
+            margin-left: 0;
+        }
+        
+        .highlight-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--accent1);
+            margin: 40px 10%;
+            text-align: justify;
+        }
+        
+        .highlight-card h3 {
+            color: var(--accent1);
+            margin-top: 0;
+            font-size: 1.4rem;
+            text-align: left;
+            text-indent: 0;
+        }
+        
+        .highlight-card ul {
+            padding-left: 20px;
+        }
+        
+        .highlight-card li {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            text-indent: 0;
+        }
+        
+        .highlight-card li:before {
+            content: '•';
+            color: var(--accent1);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 60px;
+        }
+        
+        .signature-content {
+            display: inline-block;
+            text-align: left;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-right: 5px solid var(--primary);
+        }
+        
+        .signature p {
+            margin: 0;
+            font-size: 1.1rem;
+            text-indent: 0;
+        }
+        
+        .signature .name {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-top: 15px;
+        }
+        
+        .signature .title {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card:nth-child(odd),
+            .card:nth-child(even),
+            .card:nth-child(3n+0),
+            .highlight-card {
+                margin-right: 0;
+                margin-left: 0;
+            }
+            
+            .card, .highlight-card {
+                padding: 20px;
+                text-indent: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card, .highlight-card {
+                padding: 15px;
+                text-indent: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Chairman's Address</h1>
+        </div>
+        
+        <div class="profile">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Chairman's Photo" class="profile-img">
+            <div class="profile-info">
+                <h2>Salem Al-Mahrouqi</h2>
+                <p class="title">Chairman of the Board</p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <p>Welcome to the official Hishopping website! As the Chairman of Hishopping, I extend my warmest greetings and heartfelt appreciation to every visitor who has taken the time to explore our website. It is with great honor and excitement that I share with you through this article the remarkable achievements and future plans of HiShopping.</p>
+            </div>
+            
+            <div class="card">
+                <p>Since its establishment, Hishopping has been committed to transforming consumers' shopping experience, helping them save money, earn money, and enjoy consumption. Our goal is to become the preferred destination for shoppers seeking quality products, competitive prices, and exceptional service. We strive to not only meet but exceed our customers' expectations, making all Hishopping consumers become our loyal customers.</p>
+            </div>
+            
+            <div class="highlight-card">
+                <h3>Our Strategic Expansion Plan</h3>
+                <ul>
+                    <li>We have already established our presence in Oman, and we are now actively planning to open branches in the remaining five Gulf Cooperation Council (GCC) countries, as well as in five African nations and select countries across Asia.</li>
+                    <li>In each of these new markets, we will introduce "the partnership and consumer subsidy" model that emerged after three years of rigorous investigation, design, research and development, which subverts traditional consumption concepts.</li>
+                    <li>By leveraging cutting-edge technology and staying abreast of industry trends, we will continuously enhance our platform, offering features that allow consumers to save money while shopping and earn money by starting their own businesses through HiShopping.</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <p>Our expansion plans are rooted in our unwavering commitment to customer satisfaction. The innovative approach of Hishopping's partnership model has fundamentally changed the relationship between the platform, merchants, and consumers, transforming it into a partnership that has improved relationships among all three parties involved.</p>
+            </div>
+            
+            <div class="card">
+                <p>Meanwhile, through our "consumer subsidies," consumers can now participate in profit distribution, encouraging them to spend confidently, willingly, and with greater purchasing power. This model benefits consumers by encouraging confident spending and improving their quality of life, merchants by attracting and retaining customers and increasing profits.</p>
+            </div>
+            
+            <div class="card">
+                <p>The company's culture is rooted in its commitment to become a socially respected enterprise, with a mission to continuously improve the quality of life. HiShopping's core value consists of empowering enterprises with capital, and its business essence transforms consumption into saving, wealth management, value appreciation, and retirement planning.</p>
+            </div>
+            
+            <div class="card">
+                <p>The company's operational philosophy is based on altruism, gratitude, selflessness, and dedication, recognizing the importance of consumers, merchants, and entrepreneurs in achieving stability, strength, and scale.</p>
+            </div>
+        </div>
+        
+        <div class="signature">
+            <div class="signature-content">
+                <p>Thank you for your trust in Hishopping.</p>
+                <p class="name">Salem Al-Mahrouqi</p>
+                <p class="title">Chairman of the Board</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
