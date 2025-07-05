@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiShopping Guide</title>
+    <!-- Cairo Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --bg-color: #f5f8fa;
+            --text-color: #333;
+            --accent-bg: #fff;
+            --border-color: #e0e0e0;
+            --radius: 6px;
+        }
+        
+        [lang="en"] {
+            --ReleasePoint: "Release Points";
+            --SpecialPoint: "Special Points";
+        }
+        
+        [lang="ar"] {
+            --ReleasePoint: "نقاط الإصدار (إطلاق النقاط)";
+            --SpecialPoint: "التكامل الخاص (النقاط الخاصة)";
+        }
+        
+        .ReleasePoint::after {
+            content: var(--ReleasePoint);
+        }
+        .SpecialPoint::after {
+            content: var(--SpecialPoint);
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .language-switcher {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .language-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        
+        .hishopping-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 8px;
+        }
+        
+        .hishopping-page h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hishopping-page .logo img {
+            width: 120px;
+            display: block;
+            margin: 0 auto 2rem;
+        }
+        
+        .intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(44, 123, 229, 0.05);
+            border-radius: var(--radius);
+            border-right: 4px solid var(--primary-color);
+        }
+        
+        .hishopping-accordion details {
+            background: var(--accent-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .hishopping-accordion summary {
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            list-style: none;
+            position: relative;
+            color: var(--primary-color);
+        }
+        
+        .hishopping-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .hishopping-accordion summary:before {
+            content: "";//▶
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.2s ease;
+            font-size: 1rem;
+        }
+
+        
+        [dir="rtl"] .hishopping-accordion summary:before {
+            left: auto;
+            right: 1.25rem;
+        }
+        
+        .hishopping-accordion details[open] summary:before {
+            transform: translateY(-50%) rotate(90deg);
+        }
+        
+        .hishopping-accordion .content {
+            padding: 1rem 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        
+        .hishopping-accordion .content ol,
+        .hishopping-accordion .content ul {
+            padding-left: 1.5rem;
+        }
+        
+        [dir="rtl"] .hishopping-accordion .content ol,
+        [dir="rtl"] .hishopping-accordion .content ul {
+            padding-left: 0;
+            padding-right: 1.5rem;
+        }
+        
+        .hishopping-accordion .content li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        [dir="rtl"] .hishopping-accordion .content li {
+            padding-left: 0;
+            padding-right: 1.5rem;
+        }
+        
+        .hishopping-accordion .content li img {
+            display: block;
+    max-width: 300px; /* يمكنك تغيير هذه القيمة حسب الحاجة */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0.5rem auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .red-text {
+            color: red;
+        }
+        
+        @media (max-width: 600px) {
+            .hishopping-page {
+                padding: 1rem;
+            }
+            .hishopping-page h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="language-btn" onclick="switchLanguage('ar')">العربية</button>
+        <button class="language-btn" onclick="switchLanguage('en')">English</button>
+    </div>
+
+    <div class="hishopping-page" id="content-container" lang="ar" dir="rtl">
+        <!-- Arabic Content -->
+        <div id="ar-content">
+            <!-- Page Title -->
+            <h1>ابدأ رحلتك مع HiShopping اليوم! واحصل على 100 ريال عماني فور التسجيل</h1>
+
+            <!-- Logo -->
+            <div class="logo">
+                <img src="https://omanhishopping.com/img/logo2.a5b9f928.png" alt="HiShopping Logo">
+            </div>
+
+            <!-- Intro Paragraph -->
+            <p class="intro">
+                التطبيق عبارة عن وسيلة دفع جديدة في سلطنة عُمان تتيح للمستخدم استرجاع قيمة ما يدفعه من فواتير الاستهلاك في صورة نقاط داخل التطبيق.  
+                على سبيل المثال: إذا اشتريت بقيمة 100 ريال عماني في أي متجر أو مول مشارك في التطبيق، سيُضاف لك مباشرة 100 نقطة داخل التطبيق (1 نقطة = 1 ريال عماني)،  
+                ويمكنك تحويل النقاط إلى رصيد نقدي عن طريق الافراج اليومي.
+            </p>
+
+            <!-- Accordion Container -->
+            <div class="hishopping-accordion">
+                <!-- Tab 1 -->
+                <details>
+                    <summary>التسجيل وتنزيل التطبيق</summary>
+                    <div class="content">
+                        <ol>
+                            <li>
+                                أولاً قم بمسح الكود التالي من جوالك أو قم بالضغط على <a href="https://www.omanhishopping.com/h5/register?uid=119179">رابط التسجيل</a> بدلا من مسح الكود وستنتقل مباشرة إلى صفحة التسجيل
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.1.jpg">
+                            </li>
+                            <li>قم بملء الحقول على النحو التالي:</li>
+                            <ol>
+                                <li>ضع الاسم الذي تحب ان يظهر في التطبيق.</li>
+                                <li>ضع رقم الجوال الخاص بك بدولة عُمان.</li>
+                                <li>اضغط على زر <strong>Octane Code</strong> وسيصلك رمز OTP على جوالك.</li>
+                                <li>أدرج رمز الـ OTP المرسل لك في خانة <em>Enter Code</em>.</li>
+                                <li>ادخل كلمة مرور للتطبيق ثم أكدها.</li>
+                                <li>اضغط على <strong>Confirm Register</strong>.
+                                    <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.2.png">
+                                </li>
+                            </ol>
+                            <li>بعدها يتم نقلك مباشرة إلى صفحة تنزيل التطبيق.</li>
+                            <li>قم بتنزيل التطبيق حسب جوالك: iPhone عبر App Store أو Android عبر Google Play.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.3.jpg">
+                            </li>
+                            <li>بعد التنزيل، افتح التطبيق ووافق على السماح الإشعارات.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.4.png">
+                            </li>
+                            <li>اختر اللغة المناسبة لك داخل التطبيق.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.5.jpg">
+                            </li>
+                            <li>قم بتفعيل الموقع الجغرافي إذا طلب منك.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.6.png">
+                            </li>
+                            <li>اضغط على زر "الحسابات" في الأسفل و قم بتسجيل الدخول.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.7.jpg">
+                            </li>
+                            <li>قم بتسجيل الدخول باختيار <strong>الدخول عبر رقم الهاتف </strong>وليس عن طريق الايميل وقم بادخال رقم جوالك وكلمة المرور التي سجلتها سابقا ثم اضغط على تسجيل الدخول
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.8.jpg">
+                            </li>
+                            <li>تم تفعيل حسابك بنجاح وتمتع برصيد 100 نقطة كمستخدم جديد يظهر في محفظة <span class="ReleasePoint"></span>
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.9.jpg">
+                            </li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 2 -->
+                <details>
+                    <summary>كيفية إضافة رصيد للتطبيق</summary>
+                    <div class="content">
+                        <ol>
+                            <li>قم بفتح التطبيق واضغط على زر "الحسابات" في الأسفل.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.1.jpg">
+                            </li>
+                            <li>ثم اضغط على نقاط الاستهلاك.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.2.jpg">
+                            </li>
+                            <li>ثم اضغط على اعادة شحن.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.3.jpg">
+                            </li>
+                            <li>ثم اضغط حوالة بنكية واختر طريقة الدفع المناسبة لك.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.4.jpg">
+                            </li>
+                            <li>على سبيل المثال لو اردت تحويل 300 ريال عماني من حسابك في بنك مسقط عن طريق رقم الجوال: اتبع الخطوات التالية:-
+                                <ol>
+                                    <li>قم بالذهاب الى تطبيق البنك الخاص بك ومن خلال (نظام الدفع عبر الهاتف النقال) قم بتحويل 300 ريال عماني - بالطريقة المعتادة لديك في بنكك - على الرقم الموجود داخل تطبيق HiShopping وخذ لقطة شاشة بتفاصيل الحوالة من تطبيق البنك</li>
+                                    <li>ارجع مرة اخرى لتطبق HiShopping واكتب في خانة المبلغ 300 وقم بارفاق لقطة الشاشة التي التقطتها من حساب البنك الخاص بك واضغط على ايقونة الكاميرا لارفاقها ثم اضغط على تأكيد
+                                        <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.5.jpg">
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>انتظر بضع دقائق ثم اذهب الى شاشة الحسابات وستلاحظ انه تم تنزيل الرصيد في نقاط الاستهلاك وبذلك لديك رصيد 300 ريال عماني كامل تستطيع الشراء من اي متجر مشارك مع Hishopping
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.6.jpg">
+                            </li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 3 -->
+                <details>
+                    <summary>كيفية تنفيذ عملية شراء</summary>
+                    <div class="content">
+                        <ol>
+                            <li>قم بفتح التطبيق واضغط على رمز الماسح اعلى الشاشة الرئيسية
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.3.1.jpg">
+                            </li>
+                            <li>قم بمسح الQR الخاص بالتاجر أو المتجر المراد الشراء منه ثم أدخل المبلغ وأكد العملية.</li>
+                            <li>ستلاحظ بعد نجاح عملية الدفع انه يتم الخصم من محفظة <span class="SpecialPoint"></span> أولا وإن لم يتوفر بها المبلغ المراد دفعه يتم الخصم من نقاط الاستهلاك</li>
+                            <li>وستلاحظ أيضا أنه يقوم بإضافة قيمة المبلغ المدفوع إلى محفظة <span class="ReleasePoint"></span></li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 4 -->
+                <details>
+                    <summary>كيفية الاستفادة من النقاط والافراج عنها</summary>
+                    <div class="content">
+                        <ol>
+                            <li>قم بفتح التطبيق واضغط على محفظة <span class="ReleasePoint"></span> من صفحة الحسابات
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.4.1.jpg">
+                            </li>
+                            <li>قم بالضغط على زر "انقر للافراج عن النقاط"
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.4.2.jpg">
+                            </li>
+                            <li>ثم في الصفحة التالية أيضا قم بالضغط على زر "انقر للافراج عن النقاط" مع ملاحظة انه يتم الافراج عن النقاط مرة فقط يومياً ويتم تحديد اليوم المفرج عنه في التقويم باللون الاخضر.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.4.3.jpg">
+                            </li>
+                            <li>انتظر حتى تنتهي من مشاهدة الفيديو الاعلاني وبذلك تكون قد افرجت عن النقاط من محفظة <span class="ReleasePoint"></span> إلى محفظة النقدية.</li>
+                            <li>ملاحظة نسبة الافراج اليومي عن النقاط تكون على النحو التالي
+                                <ul>
+                                    <li><span class="red-text">المستخدم العادي: </span> يتم الافراج عن النقاط بنسبة 0.1% بمعنى انه لو كان معك 1000 نقطة في محفظة <span class="ReleasePoint"></span> يتم الافراج أول يوم عن 1 ريال عماني ثم يتناقص حسب مجموع النقاط المتبقية</li>
+                                    <li><span class="red-text">المستخدم الفضي: </span> يتم الافراج عن النقاط بنسبة 0.2% بمعنى انه لو كان معك 1000 نقطة في محفظة <span class="ReleasePoint"></span> يتم الافراج أول يوم عن 2 ريال عماني ثم يتناقص حسب مجموع النقاط المتبقية</li>
+                                    <li><span class="red-text">المستخدم البلاتيني: </span> يتم الافراج عن النقاط بنسبة 0.6% بمعنى انه لو كان معك 1000 نقطة في <span class="ReleasePoint"></span> يتم الافراج أول يوم عن 6 ريال عماني ثم يتناقص حسب مجموع النقاط المتبقية</li>
+                                    <li><span class="red-text">المستخدم الذهبي: </span> يتم الافراج عن النقاط بنسبة 0.7% بمعنى انه لو كان معك 1000 نقطة في محفظة <span class="ReleasePoint"></span> يتم الافراج أول يوم عن 7 ريال عماني ثم يتناقص حسب مجموع النقاط المتبقية</li>
+                                </ul>
+                            </li>
+                            <li>ستلاحظ أنه يتم خصم النقاط من محفظة <span class="ReleasePoint"></span> ويتم رصد تلك النقاط المفرج عنها في محفظة النقدية بنسبة 80% وفي محفظة <span class="SpecialPoint"></span> بنسبة 20%.</li>
+                            <li>بعد ذلك يمكنك سحب الاموال من محفظة النقدية عن طريق البنك كما ويمكنك الاستفادة من محفظة <span class="SpecialPoint"></span> من خلال الشراء من المتاجر المشاركة.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 5 -->
+                <details>
+                    <summary>الباقات الموجودة وميزة كل باقة</summary>
+                    <div class="content">
+                        <ol>
+                            <li>هناك 3 باقات موجودة بالإضافة الى المستخدم العادي وهي على النحو التالي:
+                                <ul>
+                                    <li><span class="red-text">المستخدم العادي: </span> وهو المستخدم الجديد الذي ليس بحوزته أي باقة ويكون رصيد نقاط <span class="ReleasePoint"></span> لديه 100 نقطة بشكل تلقائي وتكون نسبة الافراج عن النقاط فيها 0.2% يومياً.</li>
+                                    <li><span class="red-text">الباقة الفضية: </span> ويتم الحصول عليها بمبلغ قدرة 10 ريال عماني تدفع لمرة واحدة فقط وتكون نسبة الافراج عن النقاط فيها 0.2% يومياً وعند الاشتراك بها يتم منح المستخدم 20 نقطة في <span class="ReleasePoint"></span>.</li>
+                                    <li><span class="red-text">الباقة البلاتينية: </span>ويتم الحصول عليها بمبلغ قدرة 100 ريال عماني تدفع لمرة واحدة فقط وتكون نسبة الافراج عن النقاط فيها 0.6% يومياً وعند الاشتراك بها يتم منح المستخدم 300 نقطة في <span class="ReleasePoint"></span>.</li>
+                                    <li><span class="red-text">الباقة الذهبية: </span> ويتم الحصول عليها بمبلغ قدرة 300 ريال عماني تدفع لمرة واحدة فقط وتكون نسبة الافراج عن النقاط فيها 0.7% يومياً وعند الاشتراك بها يتم منح المستخدم 1200 نقطة في <span class="ReleasePoint"></span>.</li>
+                                </ul>
+                            </li>
+                            <li>شراء VIP هو حملة مؤقته اطلقتها HiShopping تبداء الحملة في 1 ابريل 2025 وسيتم الاعلان عن تاريخ الانتهاء في نظام التطبيق قبل 30 يوما.</li>
+                            <li>عندنا يصبح رصيد حساب VIP صفرا يتم إعادة سرعة التحرير الى سرعة الأستخدام العادي (وهي 0.1%)</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 6 -->
+                <details>
+                    <summary>كيفية تفعيل باقة</summary>
+                    <div class="content">
+                        <ol>
+                            <li>قم بفتح التطبيق واضغط على زر "الحسابات" في الأسفل.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.1.jpg">
+                            </li>
+                            <li>قم بالضغط على شراء عضوية النجوم.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.5.1.jpg">
+                            </li>
+                            <li>قم بالضغط مرة أخرى على شراء عضوية النجوم.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.5.2.jpg">
+                            </li>
+                            <li>قم باختيار الباقة المناسبة لك مع التأكد من توفر المبلغ في نقاط الاستهلاك.</li>
+                            <li>قم بالموافقة على الاتفاقية واضغط على تأكيد الدفع.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.5.3.jpg">
+                            </li>
+                            <li>مبارك لقد أصبحت عضواً حسب الباقة التي قمت بتفعيلها وقم بتفحص تنزيل النقاط في محفظة <span class="ReleasePoint"></span>.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.5.4.jpg">
+                            </li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 7 -->
+                <details>
+                    <summary>كيفية سحب النقاط النقدية</summary>
+                    <div class="content">
+                        <ol>
+                            <li>قم بفتح التطبيق واضغط على زر "الحسابات" في الأسفل.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.1.jpg">
+                            </li>
+                            <li>قم بالضغط على محفظة نقاط النقدية.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.6.1.jpg">
+                            </li>
+                            <li>ثم اضغط على زر السحب.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.6.2.jpg">
+                            </li>
+                            <li>قم بتعبئة البيانات الخاصة بك بعناية:
+                                <ol>
+                                    <li>ادخل الاسم حسب بطاقة البنك</li>
+                                    <li>قم باختيار البنك الخاص بك</li>
+                                    <li>ادخل رقم حسابك في البنك</li>
+                                    <li>ادخل عدد النقاط المراد سحبها (كل نقطة = 1 ريال عماني)</li>
+                                    <li>ثم اضغط على زر تأكيد
+                                        <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.6.3.jpg">
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>ملاحظة/ يتم خصم 10% على مبلغ السحب النقدي</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 8 -->
+                <details>
+                    <summary>كيف تقوم بدعوة صديق لك للتسجيل في التطبيق</summary>
+                    <div class="content">
+                        <ol>
+                            <li>قم بفتح التطبيق واضغط على زر "الحسابات" في الأسفل.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.1.jpg">
+                            </li>
+                            <li>قم بالضغط على زر دعوتي.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.7.1.jpg">
+                            </li>
+                            <li>ثم قم بالضغط على زر دعوة الأصدقاء.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.7.2.jpg">
+                            </li>
+                            <li>قم بتنزيل صور ال QR الخاصة بك او قم بمشاركتها بأحدى وسائل التواصل مباشرة
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.7.3.jpg">
+                            </li>
+                            <li>أبلغ صديقك بمسح رمز ال QR واتباع نفس خطوات التسجيل السابق ذكرها.</li>
+                            <li>بهذه الطريقة يكون المستخدم الجديد قد أضيف تحتك مباشرة ويمكنك الاستفادة منه حال حصوله على الباقة الذهبية.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 9 -->
+                <details>
+                    <summary>كيف تحقق اقصى استفادة من التطبيق (استثمر بذكاء)</summary>
+                    <div class="content">
+                        <ol>
+                            <li>أولا قم بالحصول على العضوية الذهبية وبذلك تحصل على 1200 نقطة ويصبح مجموع نقاطك هو 1300 نقطة وبذلك يبدأ الافراج معك عن النقاط في هذه الحالة بقيمة 9 ريال يومياً وبذلك تستطيع استعادة قيمة الباقة الذهبية التي دفعت ثمنها خلال 42 يوماً.</li>
+                            <li>اذا قمت بدعوة شخص من خلالك وقام هذا الشخص بشراء الباقة الذهبية فانه يمنحك 360 نقطة تلقائيا تنزل في نقاطك وبذلك يصبح مجموع <span class="ReleasePoint"></span> لديك هو 1660 نقطة وبذلك يبدأ الافراج معك عن النقاط في هذه الحالة بقيمة 11.5 ريال يومياً وبذلك تستطيع استعادة قيمة الباقة الذهبية التي دفعت ثمنها خلال 32 يوماً.</li>
+                            <li>اذا قام الشخص الذي تحتك مباشرة بدعوة شخص آخر من خلاله وقام هذا الشخص بشراء الباقة الذهبية فانه يمنحك 120 نقطة تلقائيا تنزل في نقاطك وبذلك يصبح مجموع <span class="ReleasePoint"></span> لديك هو 1780 نقطة وبذلك يبدأ الافراج معك عن النقاط في هذه الحالة بقيمة 12.5 ريال يومياً وبذلك تستطيع استعادة قيمة الباقة الذهبية التي دفعت ثمنها خلال 29 يوماً.</li>
+                            <li>وهكذا كلما دعوت أشخاص بشكل أكبر وحصلوا على باقات ذهبية سيتم منحك نقاط أكثر ويكون الافراج عن النقاط لديك بشكل أكبر وأسرع.</li>
+                        </ol>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- English Content (Hidden by default) -->
+        <div id="en-content" style="display: none;">
+            <!-- Page Title -->
+            <h1>Start Your Journey with HiShopping Today! Get 100 OMR Immediately Upon Registration</h1>
+
+            <!-- Logo -->
+            <div class="logo">
+                <img src="https://omanhishopping.com/img/logo2.a5b9f928.png" alt="HiShopping Logo">
+            </div>
+
+            <!-- Intro Paragraph -->
+            <p class="intro">
+                The application is a new payment method in the Sultanate of Oman that allows users to recover the value of their consumption bills in the form of points within the application.  
+                For example: If you purchase worth 100 Omani Riyals at any store or mall participating in the app, you will directly receive 100 points in the app (1 point = 1 Omani Riyal),  
+                and you can convert the points into cash balance through daily release.
+            </p>
+
+            <!-- Accordion Container -->
+            <div class="hishopping-accordion">
+                <!-- Tab 1 -->
+                <details>
+                    <summary>Registration and Downloading the App</summary>
+                    <div class="content">
+                        <ol>
+                            <li>
+                                First, scan the following code with your phone or click on the <a href="https://www.omanhishopping.com/h5/register?uid=119179">registration link</a> instead of scanning the code, and you will be redirected directly to the registration page
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.1.jpg">
+                            </li>
+                            <li>Fill in the fields as follows:</li>
+                            <ol>
+                                <li>Enter the name you want to appear in the app.</li>
+                                <li>Enter your mobile number in Oman.</li>
+                                <li>Click on the <strong>Octane Code</strong> button and you will receive an OTP code on your phone.</li>
+                                <li>Enter the OTP code sent to you in the <em>Enter Code</em> field.</li>
+                                <li>Enter a password for the app and confirm it.</li>
+                                <li>Click on <strong>Confirm Register</strong>.
+                                    <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.2.png">
+                                </li>
+                            </ol>
+                            <li>You will then be redirected directly to the app download page.</li>
+                            <li>Download the app according to your phone: iPhone via App Store or Android via Google Play.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.3.jpg">
+                            </li>
+                            <li>After downloading, open the app and allow notifications.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.4.png">
+                            </li>
+                            <li>Choose your preferred language within the app.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.5.jpg">
+                            </li>
+                            <li>Enable location if requested.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.6.png">
+                            </li>
+                            <li>Click on the "Accounts" button at the bottom and log in.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.7.jpg">
+                            </li>
+                            <li>Log in by selecting <strong>Login via phone number</strong> (not via email) and enter your mobile number and the password you previously registered, then click on login
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.8.jpg">
+                            </li>
+                            <li>Your account has been successfully activated and you now have a balance of 100 points as a new user, which appears in the <span class="ReleasePoint"></span> wallet
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.1.9.jpg">
+                            </li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 2 -->
+                <details>
+                    <summary>How to Add Balance to the App</summary>
+                    <div class="content">
+                        <ol>
+                            <li>Open the app and click on the "Accounts" button at the bottom.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.1.jpg">
+                            </li>
+                            <li>Then click on Consumption Points.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.2.jpg">
+                            </li>
+                            <li>Then click on Recharge.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.3.jpg">
+                            </li>
+                            <li>Then click on Bank Transfer and choose the payment method that suits you.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.4.jpg">
+                            </li>
+                            <li>For example, if you want to transfer 300 Omani Riyals from your Bank Muscat account via mobile number: follow these steps:-
+                                <ol>
+                                    <li>Go to your bank app and through (Mobile Payment System) transfer 300 Omani Riyals - in the usual way in your bank - to the number shown in the HiShopping app and take a screenshot of the transfer details from your bank app</li>
+                                    <li>Return to the HiShopping app and enter the amount 300 in the amount field and attach the screenshot you took from your bank account and click on the camera icon to attach it then click on confirm
+                                        <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.5.jpg">
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Wait a few minutes then go to the accounts screen and you will notice that the balance has been added to your Consumption Points and thus you have a full 300 Omani Riyals balance that you can use to purchase from any store participating with Hishopping
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.6.jpg">
+                            </li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 3 -->
+                <details>
+                    <summary>How to Make a Purchase</summary>
+                    <div class="content">
+                        <ol>
+                            <li>Open the app and click on the scanner icon at the top of the main screen
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.3.1.jpg">
+                            </li>
+                            <li>Scan the QR code of the merchant or store you want to purchase from, then enter the amount and confirm the transaction.</li>
+                            <li>You will notice after a successful payment that the amount is deducted from the <span class="SpecialPoint"></span> wallet first, and if there is not enough balance there, it will be deducted from the Consumption Points.</li>
+                            <li>You will also notice that the value of the paid amount is added to the <span class="ReleasePoint"></span> wallet.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 4 -->
+                <details>
+                    <summary>How to Benefit from Points and Release Them</summary>
+                    <div class="content">
+                        <ol>
+                            <li>Open the app and click on the <span class="ReleasePoint"></span> wallet from the accounts page
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.4.1.jpg">
+                            </li>
+                            <li>Click on the "Click to Release Points" button
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.4.2.jpg">
+                            </li>
+                            <li>Then on the next page also click on the "Click to Release Points" button, noting that points can be released only once daily, and the release day is marked in green on the calendar.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.4.3.jpg">
+                            </li>
+                            <li>Wait until you finish watching the advertisement video, and thus you have released the points from the <span class="ReleasePoint"></span> wallet to the Cash wallet.</li>
+                            <li>Note that the daily release percentage of points is as follows
+                                <ul>
+                                    <li><span class="red-text">Regular User: </span> Points are released at 0.1%, meaning if you have 1000 points in the <span class="ReleasePoint"></span> wallet, 1 Omani Riyal will be released on the first day, then decreases according to the remaining points.</li>
+                                    <li><span class="red-text">Silver User: </span> Points are released at 0.2%, meaning if you have 1000 points in the <span class="ReleasePoint"></span> wallet, 2 Omani Riyals will be released on the first day, then decreases according to the remaining points.</li>
+                                    <li><span class="red-text">Platinum User: </span> Points are released at 0.6%, meaning if you have 1000 points in the <span class="ReleasePoint"></span> wallet, 6 Omani Riyals will be released on the first day, then decreases according to the remaining points.</li>
+                                    <li><span class="red-text">Gold User: </span> Points are released at 0.7%, meaning if you have 1000 points in the <span class="ReleasePoint"></span> wallet, 7 Omani Riyals will be released on the first day, then decreases according to the remaining points.</li>
+                                </ul>
+                            </li>
+                            <li>You will notice that points are deducted from the <span class="ReleasePoint"></span> wallet, and those released points are credited to the Cash wallet at 80% and to the <span class="SpecialPoint"></span> wallet at 20%.</li>
+                            <li>After that, you can withdraw money from the Cash wallet via bank transfer, and you can benefit from the <span class="SpecialPoint"></span> wallet by purchasing from participating stores.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 5 -->
+                <details>
+                    <summary>Available Packages and Features of Each</summary>
+                    <div class="content">
+                        <ol>
+                            <li>There are 3 packages available in addition to the regular user, which are as follows:
+                                <ul>
+                                    <li><span class="red-text">Regular User: </span> This is the new user who does not have any package and has 100 points in the <span class="ReleasePoint"></span> wallet automatically, with a daily release rate of 0.2%.</li>
+                                    <li><span class="red-text">Silver Package: </span> Obtained for a one-time payment of 10 Omani Riyals, with a daily release rate of 0.2%, and upon subscription, the user is granted 20 points in the <span class="ReleasePoint"></span> wallet.</li>
+                                    <li><span class="red-text">Platinum Package: </span> Obtained for a one-time payment of 100 Omani Riyals, with a daily release rate of 0.6%, and upon subscription, the user is granted 300 points in the <span class="ReleasePoint"></span> wallet.</li>
+                                    <li><span class="red-text">Gold Package: </span> Obtained for a one-time payment of 300 Omani Riyals, with a daily release rate of 0.7%, and upon subscription, the user is granted 1200 points in the <span class="ReleasePoint"></span> wallet.</li>
+                                </ul>
+                            </li>
+                            <li>VIP purchase is a temporary campaign launched by HiShopping starting on April 1, 2025, and the end date will be announced in the app system 30 days in advance.</li>
+                            <li>When the VIP account balance reaches zero, the release speed returns to the regular user speed (which is 0.1%).</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 6 -->
+                <details>
+                    <summary>How to Activate a Package</summary>
+                    <div class="content">
+                        <ol>
+                            <li>Open the app and click on the "Accounts" button at the bottom.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.1.jpg">
+                            </li>
+                            <li>Click on Purchase Star Membership.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.5.1.jpg">
+                            </li>
+                            <li>Click again on Purchase Star Membership.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.5.2.jpg">
+                            </li>
+                            <li>Choose the package that suits you, making sure the amount is available in your Consumption Points.</li>
+                            <li>Agree to the terms and click on Confirm Payment.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.5.3.jpg">
+                            </li>
+                            <li>Congratulations, you have become a member according to the package you activated, and check the points added to your <span class="ReleasePoint"></span> wallet.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.5.4.jpg">
+                            </li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 7 -->
+                <details>
+                    <summary>How to Withdraw Cash Points</summary>
+                    <div class="content">
+                        <ol>
+                            <li>Open the app and click on the "Accounts" button at the bottom.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.1.jpg">
+                            </li>
+                            <li>Click on the Cash Points wallet.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.6.1.jpg">
+                            </li>
+                            <li>Then click on the Withdraw button.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.6.2.jpg">
+                            </li>
+                            <li>Fill in your details carefully:
+                                <ol>
+                                    <li>Enter the name as it appears on your bank card</li>
+                                    <li>Select your bank</li>
+                                    <li>Enter your bank account number</li>
+                                    <li>Enter the number of points you want to withdraw (each point = 1 Omani Riyal)</li>
+                                    <li>Then click on the Confirm button
+                                        <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.6.3.jpg">
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Note: A 10% fee is deducted from the cash withdrawal amount.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 8 -->
+                <details>
+                    <summary>How to Invite a Friend to Register in the App</summary>
+                    <div class="content">
+                        <ol>
+                            <li>Open the app and click on the "Accounts" button at the bottom.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.2.1.jpg">
+                            </li>
+                            <li>Click on My Invitation.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.7.1.jpg">
+                            </li>
+                            <li>Then click on Invite Friends.
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.7.2.jpg">
+                            </li>
+                            <li>Download your QR images or share them directly via one of the communication methods
+                                <img src="https://taketrake.com/wp-content/uploads/2025/07/Hi.7.3.jpg">
+                            </li>
+                            <li>Ask your friend to scan the QR code and follow the same registration steps mentioned earlier.</li>
+                            <li>This way, the new user will be added directly under you, and you can benefit from them when they obtain the Gold Package.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <!-- Tab 9 -->
+                <details>
+                    <summary>How to Maximize Your Benefit from the App (Invest Smartly)</summary>
+                    <div class="content">
+                        <ol>
+                            <li>First, get the Gold Membership, thus getting 1200 points, making your total points 1300, and thus the release of points starts with you in this case at a value of 9 Omani Riyals daily, so you can recover the value of the Gold Package you paid for within 42 days.</li>
+                            <li>If you invite someone through you and this person purchases the Gold Package, you will automatically be granted 360 points added to your points, making your total <span class="ReleasePoint"></span> 1660 points, and thus the release of points starts with you in this case at a value of 11.5 Omani Riyals daily, so you can recover the value of the Gold Package you paid for within 32 days.</li>
+                            <li>If the person directly under you invites another person through them and this person purchases the Gold Package, you will automatically be granted 120 points added to your points, making your total <span class="ReleasePoint"></span> 1780 points, and thus the release of points starts with you in this case at a value of 12.5 Omani Riyals daily, so you can recover the value of the Gold Package you paid for within 29 days.</li>
+                            <li>Thus, the more people you invite and the more Gold Packages they obtain, the more points you will be granted, and the release of points will be greater and faster for you.</li>
+                        </ol>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            const container = document.getElementById('content-container');
+            const arContent = document.getElementById('ar-content');
+            const enContent = document.getElementById('en-content');
+            
+            if (lang === 'ar') {
+                container.lang = 'ar';
+                container.dir = 'rtl';
+                arContent.style.display = 'block';
+                enContent.style.display = 'none';
+            } else {
+                container.lang = 'en';
+                container.dir = 'ltr';
+                arContent.style.display = 'none';
+                enContent.style.display = 'block';
+            }
+            
+            // Update CSS variables based on language
+            document.documentElement.style.setProperty('--ReleasePoint', lang === 'ar' ? '"نقاط الإصدار (إطلاق النقاط)"' : '"Release Points"');
+            document.documentElement.style.setProperty('--SpecialPoint', lang === 'ar' ? '"التكامل الخاص (النقاط الخاصة)"' : '"Special Points"');
+        }
+        
+        // Disable right-click
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+<style>
+  /* تنسيق أزرار التمرير */
+  .scroll-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+  }
+  
+  .scroll-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .scroll-btn:hover {
+    background-color: #004a99;
+    transform: scale(1.1);
+  }
+</style>
+
+<div class="scroll-buttons">
+  <button class="scroll-btn" onclick="scrollToTop()">↑</button>
+  <button class="scroll-btn" onclick="scrollToBottom()">↓</button>
+</div>
+
+<script>
+  // دالة التمرير لأعلى الصفحة
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+  
+  // دالة التمرير لأسفل الصفحة
+  function scrollToBottom() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+  }
+</script>
+
+
+
+</body>
+</html>
